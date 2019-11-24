@@ -10,12 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
   
+    - name: Checkout
+      uses: actions/checkout@master
+
     - name: Docker Registry
       env:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
-      
+
+    # Build the Docker image
+    - name: Build Docker Images 
+      run: |        
+        $GITHUB_WORKSPACE/builder/docker-build.sh
+
+    # Build the Docker image
+    - name: Push Docker Images 
+      run: |        
+        $GITHUB_WORKSPACE/builder/docker-push.sh
+
       # this action will save the kubeconfig file to `/github/workspace/.kube/config`, which is visible to subsequent steps.
     - name: Get kubeconfig file from GKE
       uses: machine-learning-apps/gke-kubeconfig@master
