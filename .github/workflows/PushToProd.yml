@@ -41,3 +41,17 @@ jobs:
     - name: Test kubectl - get pods
       run: kubectl --kubeconfig=.kube/config get pods
     
+    # Update Deployment Configs
+    - name: Update Deployment Configs For Services
+      run: |        
+        $GITHUB_WORKSPACE/builder/deploy-update.sh
+  
+    # Roll Out Deployment Configs
+    - name: Roll Out Deployment Configs
+      run: |        
+        $GITHUB_WORKSPACE/builder/run-deployments.sh
+
+    # Roll Out Deployment Configs
+    - name: Roll Out Deployment Status
+      run: |        
+        $GITHUB_WORKSPACE/builder/rollout-status.sh
