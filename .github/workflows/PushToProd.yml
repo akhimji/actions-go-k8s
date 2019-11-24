@@ -1,0 +1,27 @@
+name: RunOnPR
+on: [pull_request]
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+  
+    - name: Docker Registry
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
+      
+      # this action will save the kubeconfig file to `/github/workspace/.kube/config`, which is visible to subsequent steps.
+    - name: Get kubeconfig file from GKE
+      uses: machine-learning-apps/gke-kubeconfig@master
+      with:
+        application_credentials: ${{ secrets.APPLICATION_CREDENTIALS }}
+        project_id: ${{ secrets.PROJECT_ID }}
+        location_zone: ${{ secrets.LOCATION_ZONE }}
+        cluster_name: ${{ secrets.CLUSTER_NAME }}
+  
+    - name: Test kubectl - get pods
+      run: kubectl --kubeconfig=.kube/config get pods
+    
