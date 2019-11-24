@@ -19,12 +19,12 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
 
-    # Build the Docker image
+    # Build the Docker images
     - name: Build Docker Images 
       run: |        
         $GITHUB_WORKSPACE/builder/docker-build.sh
 
-    # Build the Docker image
+    # Push the Docker images
     - name: Push Docker Images 
       run: |        
         $GITHUB_WORKSPACE/builder/docker-push.sh
