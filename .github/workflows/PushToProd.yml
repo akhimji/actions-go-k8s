@@ -1,5 +1,8 @@
-name: RunOnPR
-on: [pull_request]
+name: PushToProd
+on:
+  push:
+    branches:    
+      - master 
 jobs:
 
   build:
