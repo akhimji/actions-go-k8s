@@ -7,7 +7,7 @@ Build Failure On PR, oh no!
 
 Here's who did it: {{ payload.sender.login }}
 
-{{ tools.context.action }}
+{{ payload.sender.repos_url }}
 
 {{ tools.context.event }}
 
