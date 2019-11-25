@@ -34,7 +34,7 @@ jobs:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Notify slack Of Failure
-      if: success()
+      if: failure()
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_WEBHOOK }}
       uses: pullreminders/slack-action@master
