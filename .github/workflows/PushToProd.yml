@@ -51,7 +51,7 @@ jobs:
       run: |        
         $GITHUB_WORKSPACE/builder/run-deployments.sh
 
-    # Roll Out Deployment Configs
-    - name: Roll Out Deployment Status
-      run: |        
-        $GITHUB_WORKSPACE/builder/rollout-status.sh
+ #   # Roll Out Deployment Configs
+ #   - name: Roll Out Deployment Status
+ #     run: |        
+ #       $GITHUB_WORKSPACE/builder/rollout-status.sh
