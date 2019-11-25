@@ -73,8 +73,12 @@ jobs:
       run: |        
         $GITHUB_WORKSPACE/builder/run-deployments.sh
 
-    - name: Check New Pods
-      run: kubectl --kubeconfig=.kube/config get pods
+    - name: Notify Slack Success 
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_WEBHOOK }}
+      uses: pullreminders/slack-action@master
+      with:
+        args: '{\"channel\":\"aly-test\",\"text\":\":github: Sucessful Push To Production !! :aw_yeah:\",\"username\":\"GitHub Action\"}' 
 
  #   # Roll Out Deployment Configs
  #   - name: Roll Out Deployment Status

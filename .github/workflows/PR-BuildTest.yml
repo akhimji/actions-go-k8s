@@ -3,7 +3,7 @@ on: [pull_request]
 jobs:
 
   build:
-    name: Build
+    name: PR-BuildTest
     runs-on: ubuntu-latest
     steps:
 
@@ -32,3 +32,18 @@ jobs:
       uses: JasonEtco/create-an-issue@master
       env: 
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Notify slack Of Failure
+      if: success()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_WEBHOOK }}
+      uses: pullreminders/slack-action@master
+      with:
+        args: '{\"channel\":\"aly-test\",\"text\":\":github: PR-BuildTest Failed !! :sob:\",\"username\":\"GitHub Action\"}'
+
+    - name: Notify Slack Success 
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_WEBHOOK }}
+      uses: pullreminders/slack-action@master
+      with:
+        args: '{\"channel\":\"aly-test\",\"text\":\":github: PR-BuildTest Success !! :aw_yeah:\",\"username\":\"GitHub Action\"}' 
