@@ -1,5 +1,8 @@
 name: linting
-on: [pull_request]
+on:
+  push:
+    branches:    
+      - master 
 jobs:
   golangci-lint:
     name: runner / golangci-lint
