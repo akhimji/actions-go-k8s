@@ -9,8 +9,8 @@ Here's who did it: {{ payload.sender.login }}
 
 {{ payload.sender.repos_url }}
 
-{{ tools.context.event }}
+{{ payload.branches.name }}
 
-{{ tools.context.event }}
+{{ commit.commit.message }}
 
 
