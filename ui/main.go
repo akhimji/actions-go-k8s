@@ -27,7 +27,7 @@ func beerme(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "<p align='center'>Doh The Backend Appears Down!! </p>")
 		fmt.Fprintf(w, "<p align='center'></p>")
 		w.Header().Set("Content-Type", "image/jpeg")
-		fmt.Fprintf(w, "<p align='center'><img src='./home-nobackend.gif' alt='gopher' style='width:320px;height:320px;'></p>")
+		fmt.Fprintf(w, "<p align='center'><img src='images/home-nobackend.gif' alt='HomeNoooo' style='width:320px;height:320px;'></p>")
 		return
 	}
 
@@ -62,7 +62,7 @@ func dadjoke(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "<p align='center'>Doh The Backend Appears Down!! </p>")
 		fmt.Fprintf(w, "<p align='center'></p>")
 		w.Header().Set("Content-Type", "image/jpeg")
-		fmt.Fprintf(w, "<p align='center'><img src='./home-nobackend.gif' alt='gopher' style='width:320px;height:320px;'></p>")
+		fmt.Fprintf(w, "<p align='center'><img src='images/home-nobackend.gif' alt='HomeNoooo' style='width:320px;height:320px;'></p>")
 		return
 	}
 
