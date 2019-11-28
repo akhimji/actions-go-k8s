@@ -49,8 +49,10 @@ jobs:
 
     - name: Scan with Phonito Security
       uses: phonito/phonito-scanner-action@master
+      env: 
+        TAG: $(echo $GITHUB_SHA | head -c7)
       with:
-        image: r00tsh3ll/actionsgo-ui:$(echo $GITHUB_SHA | head -c7)
+        image: r00tsh3ll/actionsgo-ui:$TAG
         phonito-token: '${{ secrets.PHONITO_TOKEN }}'
 
     # Push the Docker images
