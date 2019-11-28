@@ -228,7 +228,7 @@ type randomsimpson struct {
 }
 
 func simpson(w http.ResponseWriter, r *http.Request) {
-	req, err := http.NewRequest("GET", "http://api.giphy.com/v1/gifs/random?tag=randomsimpsons&api_key=4Z7XmRZCziCDF0q6rLwAKO7BjgGuF74u", nil)
+	req, err := http.NewRequest("GET", "http://api.giphy.com/v1/gifs/random?tag=simpsons&api_key=4Z7XmRZCziCDF0q6rLwAKO7BjgGuF74u", nil)
 	if err != nil {
 		// handle err
 	}
