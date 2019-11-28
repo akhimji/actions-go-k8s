@@ -227,7 +227,7 @@ type randomsimpson struct {
 	} `json:"meta"`
 }
 
-func beerme(w http.ResponseWriter, r *http.Request) {
+func simpson(w http.ResponseWriter, r *http.Request) {
 	req, err := http.NewRequest("GET", "http://api.giphy.com/v1/gifs/random?tag=randomsimpsons&api_key=4Z7XmRZCziCDF0q6rLwAKO7BjgGuF74u", nil)
 	if err != nil {
 		// handle err
@@ -268,17 +268,8 @@ func beerme(w http.ResponseWriter, r *http.Request) {
 	w.Write(b)
 }
 
-func health(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<p align='center'>Doh The Backend Appears Down!! </p>")
-	fmt.Fprintf(w, "<p align='center'></p>")
-	w.Header().Set("Content-Type", "image/jpeg")
-	fmt.Fprintf(w, "<p align='center'><img src='./home-nobackend.gif' alt='gopher' style='width:320px;height:320px;'></p>")
-	return
-}
-
 func setupRoutes() {
-	http.HandleFunc("/", beerme)
-	http.HandleFunc("/healthz", health)
+	http.HandleFunc("/", simpson)
 }
 
 func main() {
