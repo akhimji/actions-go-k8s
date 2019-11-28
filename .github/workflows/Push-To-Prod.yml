@@ -47,14 +47,6 @@ jobs:
       run: |        
         $GITHUB_WORKSPACE/builder/docker-build.sh
 
-    - name: Scan with Phonito Security
-      uses: phonito/phonito-scanner-action@master
-      env: 
-        TAG: $(echo $GITHUB_SHA | head -c7)
-      with:
-        image: r00tsh3ll/actionsgo-ui:$TAG
-        phonito-token: '${{ secrets.PHONITO_TOKEN }}'
-
     # Push the Docker images
     - name: Push Docker Images 
       run: |        
