@@ -2,7 +2,10 @@ name: Push-To-Prod
 on:
   push:
     branches:    
-      - master 
+      - master
+env:
+  PHONITO_API_TOKEN: ${{ secrets.PHONITO_TOKEN }}
+
 jobs:
 
   build:
@@ -46,11 +49,13 @@ jobs:
       run: |        
         $GITHUB_WORKSPACE/builder/docker-build.sh
 
+    - name: Pull Down Container Scanner
+      run:  |
+        sudo wget https://phonito-public-artifacts.azureedge.net/scanner/phonito-scanner -O $GITHUB_WORKSPACE/phonito-scanner
+        sudo chmod +x $GITHUB_WORKSPACE/phonito-scanner
+
     - name: Scan with Phonito Security
-      uses: phonito/phonito-scanner-action@master
-      with:
-        image: r00tsh3ll/actionsgo-$p:$(echo $GITHUB_SHA | head -c7)
-        phonito-token: ${{ secrets.PHONITO_TOKEN }}
+      run: $GITHUB_WORKSPACE/phonito-scanner -i r00tsh3ll/actionsgo-ui:$(echo $GITHUB_SHA | head -c7)
 
     # Push the Docker images
     - name: Push Docker Images 
