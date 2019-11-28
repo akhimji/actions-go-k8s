@@ -51,7 +51,7 @@ func beerme(w http.ResponseWriter, r *http.Request) {
 }
 
 func simpsons(w http.ResponseWriter, r *http.Request) {
-	req, err := http.NewRequest("GET", "http://go-web-beer", nil)
+	req, err := http.NewRequest("GET", "http://go-web-simpsons", nil)
 	if err != nil {
 		//handle err
 	}
