@@ -46,6 +46,12 @@ jobs:
       run: |        
         $GITHUB_WORKSPACE/builder/docker-build.sh
 
+    - name: Scan with Phonito Security
+      uses: phonito/phonito-scanner-action@master
+      with:
+        image: myapp:${{ steps.vars.outputs.docker_tag }}
+        phonito-token: ${{ secrets.PHONITO_TOKEN }}
+
     # Push the Docker images
     - name: Push Docker Images 
       run: |        
@@ -79,9 +85,3 @@ jobs:
       uses: pullreminders/slack-action@master
       with:
         args: '{\"channel\":\"aly-test\",\"text\":\":github: Sucessful Push To Production !! :aw_yeah:\",\"username\":\"GitHub Action\"}' 
-
- #   # Roll Out Deployment Configs
- #   - name: Roll Out Deployment Status
- #     run: |        
- #       $GITHUB_WORKSPACE/builder/rollout-status.sh
- #
