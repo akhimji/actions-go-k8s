@@ -93,10 +93,12 @@ func dadjoke(w http.ResponseWriter, r *http.Request) {
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		fmt.Fprintf(w, "<h2 align='center'>Doh The Backend Appears Down!! </h2>")
+		fmt.Fprintf(w, "<html>")
+		fmt.Fprintf(w, "<h2 align=center>Doh The Backend Appears Down!! </h2>")
 		fmt.Fprintf(w, "<p align='center'></p>")
 		w.Header().Set("Content-Type", "image/jpeg")
 		fmt.Fprintf(w, "<p align='center'><img src='images/home-nobackend.gif' alt='HomeNoooo' style='width:320px;height:320px;'></p>")
+		fmt.Fprintf(w, "</html>")
 		return
 	}
 
